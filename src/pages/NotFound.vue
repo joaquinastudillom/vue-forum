@@ -1,0 +1,18 @@
+<template>
+  <div class="col-full">
+    <h1>Not Found</h1>
+    <p>
+      Ooops, we couldn't find it.
+
+      <router-link :to="{ name: 'Home' }">
+        go home instead?
+      </router-link>
+    </p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "NotFound"
+};
+</script>
