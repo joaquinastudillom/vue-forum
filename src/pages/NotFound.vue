@@ -1,7 +1,7 @@
 <template>
-  <div class="col-full">
-    <h1>Not Found</h1>
-    <p>
+  <div class="col-full" :class="$style.centered">
+    <h1 :class="$style.headingLarge">Not Found</h1>
+    <p :class="$style.textLarge">
       Ooops, we couldn't find it.
 
       <router-link :to="{ name: 'Home' }">
@@ -16,3 +16,18 @@ export default {
   name: "NotFound"
 };
 </script>
+
+<style module>
+.headingLarge {
+  font-size: 100px;
+}
+
+.textLarge {
+  font-size: 50px;
+  font-weight: 100;
+}
+
+.centered {
+  text-align: center;
+}
+</style>

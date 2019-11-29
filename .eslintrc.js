@@ -31,4 +31,4 @@ module.exports = {
     // disable prop types
     "vue/require-prop-types": "off"
   }
-}
+};
