@@ -2,31 +2,19 @@
   <div class="col-large push-top">
     <h2>{{ thread.title }}</h2>
     <post-list :posts="postsList" />
-    <form @submit.prevent="addPost">
-      <div class="form-group">
-        <textarea
-          id=""
-          v-model="newPostText"
-          class="form-input"
-          name=""
-          cols="30"
-          rows="10"
-        ></textarea>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn-blue">Submit post</button>
-      </div>
-    </form>
+    <post-editor :thread-id="id" />
   </div>
 </template>
 
 <script>
 import sourceData from "@/data";
 import PostList from "@/components/PostList";
+import PostEditor from "@/components/PostEditor";
 export default {
   name: "ThreadShow",
   components: {
-    PostList
+    PostList,
+    PostEditor
   },
   props: {
     id: {
@@ -36,8 +24,7 @@ export default {
   },
   data() {
     return {
-      thread: sourceData.threads[this.id],
-      newPostText: ""
+      thread: sourceData.threads[this.id]
     };
   },
   computed: {
@@ -46,21 +33,6 @@ export default {
       return Object.values(sourceData.posts).filter(post =>
         postIds.includes(post[".key"])
       );
-    }
-  },
-  methods: {
-    addPost() {
-      const postId = "greatPost" + Math.random();
-      const post = {
-        text: this.newPostText,
-        publishedAt: Math.floor(Date.now() / 1000),
-        threadId: this.id,
-        userId: "ALXhxjwgY9PinwNGHpfai6OWyDu2",
-        ".key": postId
-      };
-      this.$set(sourceData.posts, postId, post);
-      this.$set(this.thread.posts, postId, postId);
-      this.newPostText = "";
     }
   }
 };

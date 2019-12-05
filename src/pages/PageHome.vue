@@ -1,24 +1,24 @@
 <template>
-  <div>
+  <div class="col-full push-top">
     <h1>Welcome to the forum</h1>
-    <thread-list :threads="threads" />
+    <category-list :categories="categories" />
   </div>
 </template>
 
 <script>
-import sourceData from "@/data";
-import ThreadList from "@/components/ThreadList";
+import CategoryList from "@/components/CategoryList";
 export default {
   name: "HelloWorld",
   components: {
-    ThreadList
+    CategoryList
   },
   data() {
-    return {
-      threads: Object.values(sourceData.threads),
-      posts: sourceData.posts,
-      users: sourceData.users
-    };
+    return {};
+  },
+  computed: {
+    categories() {
+      return Object.values(this.$store.state.categories);
+    }
   }
 };
 </script>
