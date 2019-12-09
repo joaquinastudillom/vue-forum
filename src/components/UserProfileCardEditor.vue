@@ -27,8 +27,8 @@
         <label for="user_bio">Bio</label>
         <textarea
           v-model="activeUser.bio"
-          class="form-input"
           id="user_bio"
+          class="form-input"
           placeholder="Write a few words about yourself."
         ></textarea>
       </div>
@@ -71,8 +71,8 @@
       </div>
 
       <div class="btn-group space-between">
-        <button class="btn-ghost">Cancel</button>
-        <button @click.prevent="save" type="submit" class="btn-blue">
+        <button class="btn-ghost" @click.prevent="cancel">Cancel</button>
+        <button type="submit" class="btn-blue" @click.prevent="save">
           Save
         </button>
       </div>
@@ -109,6 +109,9 @@ export default {
   methods: {
     save() {
       this.$store.dispatch("updateUser", { ...this.activeUser });
+    },
+    cancel() {
+      this.$router.push({ name: "Profile" });
     }
   }
 };

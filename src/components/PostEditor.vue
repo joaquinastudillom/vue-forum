@@ -31,16 +31,14 @@ export default {
   },
   methods: {
     save() {
-      const postId = "greatPost" + Math.random();
       const post = {
         text: this.text,
-        publishedAt: Math.floor(Date.now() / 1000),
-        threadId: this.threadId,
-        userId: "ALXhxjwgY9PinwNGHpfai6OWyDu2",
-        ".key": postId
+        threadId: this.threadId
       };
-      this.$store.dispatch("createPost", post);
       this.text = "";
+      //keeps this event here in case the parent component needs to do something on save like hide the editor
+      this.$emit("save", { post });
+      this.$store.dispatch("createPost", post);
     }
   }
 };

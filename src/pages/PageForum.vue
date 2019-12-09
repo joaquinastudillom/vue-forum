@@ -8,7 +8,12 @@
             {{ forum.description }}
           </p>
         </div>
-        <a href="#" class="btn-green btn-small">Start a thread</a>
+        <router-link
+          class="btn-green btn-small"
+          :to="{ name: 'ThreadCreate', params: { forumId: forum['.key'] } }"
+        >
+          Start a thread
+        </router-link>
       </div>
     </div>
 

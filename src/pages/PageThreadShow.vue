@@ -1,6 +1,16 @@
 <template>
   <div class="col-large push-top">
-    <h2>{{ thread.title }}</h2>
+    <h2>
+      {{ thread.title }}
+
+      <router-link
+        :to="{ name: 'ThreadEdit', id: id }"
+        class="btn-green btn-small"
+        tag="button"
+      >
+        Edit Thread
+      </router-link>
+    </h2>
     <post-list :posts="postsList" />
     <post-editor :thread-id="id" />
   </div>
@@ -22,12 +32,10 @@ export default {
       type: String
     }
   },
-  data() {
-    return {
-      thread: sourceData.threads[this.id]
-    };
-  },
   computed: {
+    thread() {
+      return this.$store.state.threads[this.id];
+    },
     postsList() {
       const postIds = Object.values(this.thread.posts);
       return Object.values(sourceData.posts).filter(post =>
